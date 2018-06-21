@@ -1,0 +1,28 @@
+g=3;
+geff = 100;
+Mpl = 2.435*10^(18);
+m1=155;
+vacs1 = 9.16*10^(-12);
+m2=160;
+vacs2 = 8.82*10^(-12);
+m3=165;
+vacs3 = 8.65*10^(-12);
+m4=170;
+vacs4 = 8.49*10^(-12);
+m5=175;
+vacs5 = 8.33*10^(-11);
+Clear[x];
+sol0 = NDSolveValue[{y'[x]== -(m1*Mpl/Pi)*(1/x^2)*(90/geff)^(1/2)*vacs1*(y[x]^2 - ((g/(2*Pi)^(3/2))*x^(3/2)*Exp[-x])^2), y[1]==(g/(2*Pi)^(3/2))*1^(3/2)*Exp[-1] },y,{x,1,400}];
+sol1 = NDSolveValue[{y'[x]== -(m2*Mpl/Pi)*(1/x^2)*(90/geff)^(1/2)*vacs2*(y[x]^2 - ((g/(2*Pi)^(3/2))*x^(3/2)*Exp[-x])^2), y[1]==(g/(2*Pi)^(3/2))*1^(3/2)*Exp[-1] },y,{x,1,400}];
+sol2 = NDSolveValue[{y'[x]== -(m3*Mpl/Pi)*(1/x^2)*(90/geff)^(1/2)*vacs3*(y[x]^2 - ((g/(2*Pi)^(3/2))*x^(3/2)*Exp[-x])^2), y[1]==(g/(2*Pi)^(3/2))*1^(3/2)*Exp[-1] },y,{x,1,400}];
+sol3 = NDSolveValue[{y'[x]== -(m4*Mpl/Pi)*(1/x^2)*(90/geff)^(1/2)*vacs4*(y[x]^2 - ((g/(2*Pi)^(3/2))*x^(3/2)*Exp[-x])^2), y[1]==(g/(2*Pi)^(3/2))*1^(3/2)*Exp[-1] },y,{x,1,400}];
+sol4= NDSolveValue[{y'[x]== -(m5*Mpl/Pi)*(1/x^2)*(90/geff)^(1/2)*vacs5*(y[x]^2 - ((g/(2*Pi)^(3/2))*x^(3/2)*Exp[-x])^2), y[1]==(g/(2*Pi)^(3/2))*1^(3/2)*Exp[-1] },y,{x,1,400}];
+yeq[x_]:= (g/(2*Pi)^(3/2))*x^(3/2)*Exp[-x] ; 
+plot1=LogLogPlot[yeq[x]/yeq[1],{x,1,100},PlotRange->{{1,400},{1*10^(-8),10}}  ,PlotStyle->{Red,Dotted}  ];
+plot2=LogLogPlot[sol0[x]/sol0[1],{x,1,400} ,PlotRange->{{1,400},{1*10^(-8),10}}  ];
+plot3=LogLogPlot[sol1[x]/sol1[1],{x,1,400} ,PlotRange->{{1,400},{1*10^(-8),10}}  ];
+plot4=LogLogPlot[sol2[x]/sol2[1],{x,1,400} ,PlotRange->{{1,400},{1*10^(-8),10}}  ];
+plot5=LogLogPlot[sol3[x]/sol3[1],{x,1,400} ,PlotRange->{{1,400},{1*10^(-8),10}}  ];
+plot6=LogLogPlot[sol4[x]/sol4[1],{x,1,400} ,PlotRange->{{1,400},{1*10^(-8),10}}  ];
+Show[plot1,plot2,AxesLabel-> {x,Y[x]/Y[1]}] 
+Show[plot1,plot2,Epilog -> {Text[Subscript[X,f], Log@{17, 4}],Black,Dashed,Line[{Log@{17, 2}, Log@{17, 0.00000001}}]},AxesLabel-> {x,Y[x]/Y[1]}] 
