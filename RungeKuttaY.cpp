@@ -1,3 +1,4 @@
+// Hecho por Manuel Fernando Sanchez Alarcon
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
